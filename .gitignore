@@ -1,0 +1,24 @@
+# Xcode
+DerivedData/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# User-specific
+*.pbxuser
+*.mode1v3
+*.mode2v3
+
+# macOS
+.DS_Store
+
+# SwiftFormat
+BuildTools/.build
+BuildTools/.swiftpm
+
+WeatherTheSecond/Resources/Configs/Secrets.xcconfig
+Configs/.xcconfig

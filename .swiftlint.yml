@@ -1,0 +1,7 @@
+excluded:
+  - BuildTools
+  - Pods
+  - Carthage
+  - .build
+  - DerivedData
+  - Tests

@@ -1,0 +1,10 @@
+# Общие настройки
+--indent 4
+--allman false
+
+# Правила
+--disable elseOnSameLine,semicolons
+--trailingclosures never
+
+# Исключения
+--exclude Pods,Generated

@@ -5,8 +5,12 @@
 //  Created by Никита Вахрушев on 18.12.2025.
 //
 
-struct WeatherService: WeatherProviding {
+actor WeatherService: WeatherProviding {
     let api: APIClient
+
+    init(api: APIClient) {
+        self.api = api
+    }
 
     func fetchWeather(key: String, city: String, lang: String) async throws -> WeatherResponseDto {
         try await api.request(

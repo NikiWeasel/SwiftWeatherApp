@@ -46,20 +46,15 @@ struct WeatherStatsView: View {
             }
 
             if let error = viewModel.error {
-                NavigationStack {
-                    VStack {
-                        Image(systemName: "exclamationmark.triangle").symbolEffect(.pulse)
-                            .font(.system(size: 48))
-
-                        Text("Error: \(error.localizedDescription)").font(.system(size: 20)).padding(2)
-
-                        Button {
-                            Task {
-                                await viewModel.loadWeather(for: "Moscow")
-                            }
-                        } label: {
-                            Text(NSLocalizedString("renew", comment: ""))
-                        }
+                ContentUnavailableView {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 48))
+                        .symbolEffect(.pulse)
+                } description: {
+                    Text(error.localizedDescription)
+                } actions: {
+                    Button("Retry") {
+                        Task { await viewModel.loadWeather(for: "Moscow") }
                     }
                 }
             }

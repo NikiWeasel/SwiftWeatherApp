@@ -9,14 +9,12 @@ import SwiftUI
 
 @main
 struct WeatherTheSecondApp: App {
+    @State private var container = DIContainer()
     private let router = AppRouter()
 
     var body: some Scene {
         WindowGroup {
-            let container = DIContainer()
-            AppCoordinator(
-                container: container
-            )
+            AppCoordinator(container: container)
         }
     }
 }

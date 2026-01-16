@@ -5,7 +5,6 @@
 //  Created by Никита Вахрушев on 19.12.2025.
 //
 
-@MainActor
 final class SearchCityUseCase: SearchCityUseCaseProtocol {
     private let repository: WeatherFetching
 

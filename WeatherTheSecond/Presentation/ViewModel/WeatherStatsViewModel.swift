@@ -84,6 +84,7 @@ final class WeatherStatsViewModel: ObservableObject {
         case let .success(weather):
             self.weather = weather
         case let .failure(error):
+            isLoading = false
             self.error = error
         }
     }

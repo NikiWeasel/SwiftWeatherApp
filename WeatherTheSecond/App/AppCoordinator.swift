@@ -10,7 +10,6 @@ import SwiftUI
 
 struct AppCoordinator: View {
     @StateObject private var router: AppRouter
-
     @StateObject private var searchViewModel: SearchCityViewModel
     @StateObject private var weatherViewModel: WeatherStatsViewModel
 
@@ -29,11 +28,8 @@ struct AppCoordinator: View {
         _searchViewModel = StateObject(wrappedValue: searchVM)
         _weatherViewModel = StateObject(wrappedValue: weatherVM)
 
-        // weak теперь КОРРЕКТЕН
         searchVM.onCitySelected = { [weak router] city in
-            router?.navigateTo(
-                route: .weatherDetails(cityID: city.id)
-            )
+            router?.navigateTo(route: .weatherDetails(cityID: city.id))
         }
 
         weatherVM.onShowSearchView = { [weak router] in
@@ -49,11 +45,10 @@ struct AppCoordinator: View {
                     case .search:
                         SearchCityView(viewModel: searchViewModel)
 
-                    case let .weatherDetails(cityID):
+                    case .weatherDetails:
                         WeatherStatsView(viewModel: weatherViewModel)
                             .task {
-                                await weatherViewModel
-                                    .refreshWeather()
+                                await weatherViewModel.refreshWeather()
                             }
                     }
                 }
@@ -61,8 +56,5 @@ struct AppCoordinator: View {
         .environmentObject(router)
         .environmentObject(searchViewModel)
         .environmentObject(weatherViewModel)
-
-//        .environmentObject(weatherViewModel)
-//        ...environmentObject(SearchCityViewModel)
     }
 }

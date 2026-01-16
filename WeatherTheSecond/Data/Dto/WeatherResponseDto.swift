@@ -5,13 +5,13 @@
 //  Created by Никита Вахрушев on 17.12.2025.
 //
 
-struct WeatherResponseDto: Codable {
+nonisolated struct WeatherResponseDto: Codable, Sendable {
     let location: LocationDto
     let current: CurrentWeatherDto
 }
 
 extension WeatherResponseDto {
-    func toEntity() -> WeatherEntity {
+    nonisolated func toEntity() -> WeatherEntity {
         return WeatherEntity(
             location: LocationEntity(
                 name: location.name,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RestRepository: WeatherFetching {
+actor RestRepository: WeatherFetching {
     private let service: WeatherProviding
     private let apiKey: String
 
@@ -31,6 +31,7 @@ final class RestRepository: WeatherFetching {
             case let .httpError(code):
                 appError = .server(code)
             case let .decoding(decodeError):
+                print(decodeError.localizedDescription)
                 appError = .parsing(decodeError.localizedDescription)
             }
             return .failure(appError)

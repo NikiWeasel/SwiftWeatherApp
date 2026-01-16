@@ -7,23 +7,21 @@
 
 import Foundation
 
+@MainActor
 final class DIContainer {
-    let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String ?? ""
+    let weatherRepository: WeatherFetching
+    let searchCityUseCase: SearchCityUseCaseProtocol
+    let fetchWeatherUseCase: WeatherStatsUseCaseProtocol
 
-    // Network
-    lazy var apiClient = APIClient()
+    init() {
+        let apiKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String ?? ""
+        let apiClient = APIClient()
+        let weatherService = WeatherService(api: apiClient)
 
-    // Services
-    lazy var weatherService: WeatherProviding = WeatherService(api: apiClient)
+        let repository = RestRepository(service: weatherService, apiKey: apiKey)
+        weatherRepository = repository
 
-    // Repositories
-    lazy var weatherRepository: WeatherFetching =
-        RestRepository(service: weatherService, apiKey: apiKey)
-
-    // UseCases
-    lazy var searchCityUseCase: SearchCityUseCaseProtocol =
-        SearchCityUseCase(repository: weatherRepository)
-
-    lazy var fetchWeatherUseCase: WeatherStatsUseCaseProtocol =
-        WeatherStatsUseCase(repository: weatherRepository)
+        searchCityUseCase = SearchCityUseCase(repository: repository)
+        fetchWeatherUseCase = WeatherStatsUseCase(repository: repository)
+    }
 }

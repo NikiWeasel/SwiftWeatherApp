@@ -18,9 +18,9 @@ struct StatContainer: View {
                 Image(
                     systemName: icon
                 )
-                .foregroundStyle(Color("Secondary"))
+                .foregroundStyle(Color("SecondaryColor"))
                 Text(label)
-                    .font(.default).foregroundStyle(Color("Secondary"))
+                    .font(.default).foregroundStyle(Color("SecondaryColor"))
             }
             Text(value)
                 .font(.subheadline)

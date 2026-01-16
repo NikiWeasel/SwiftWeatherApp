@@ -38,7 +38,7 @@ struct AnimatedGlassView: View {
                     .font(.system(size: 80, weight: .bold))
 
                 Text(weather.current.conditionText)
-                    .font(.default).foregroundStyle(Color("Secondary")).padding(8)
+                    .font(.default).foregroundStyle(Color("SecondaryColor")).padding(8)
 
                 HStack {
                     StatContainer(
@@ -75,10 +75,10 @@ struct AnimatedGlassView: View {
                 Spacer()
                     .frame(height: 16)
                 HStack {
-                    Image(systemName: "timer").foregroundStyle(Color("Secondary"))
+                    Image(systemName: "timer").foregroundStyle(Color("SecondaryColor"))
                     Text("Updated \(viewModel.timerValue.format())")
                         .font(.default)
-                        .foregroundStyle(Color("Secondary"))
+                        .foregroundStyle(Color("SecondaryColor"))
                 }
             }
             .padding(16).glassEffect(in: RoundedRectangle(cornerRadius: 30)).padding(24)

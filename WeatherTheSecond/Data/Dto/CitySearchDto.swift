@@ -16,7 +16,7 @@ struct CitySearchDto: Codable {
 }
 
 extension CitySearchDto {
-    func toEntity(
+    nonisolated func toEntity(
     ) -> CityEntity {
         return CityEntity(
             id: id,

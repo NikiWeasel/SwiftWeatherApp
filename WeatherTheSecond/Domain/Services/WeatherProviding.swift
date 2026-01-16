@@ -5,7 +5,7 @@
 //  Created by Никита Вахрушев on 18.12.2025.
 //
 
-protocol WeatherProviding {
+protocol WeatherProviding: Sendable {
     func searchCity(
         key: String,
         cityQuery: String
